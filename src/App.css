@@ -1,0 +1,84 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.3fr 2.4fr 0.3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "navBarContainer navBarContainer navBarContainer"
+    "body body body"
+    "footer footer footer";
+}
+
+.navBarContainer {
+  grid-area: navBarContainer;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid;
+}
+
+.logoContainer {
+  width: 30%;
+  border: solid;
+  padding: 6px;
+}
+.menuContainer {
+  width: 65%;
+}
+
+.loginContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ". userLogin";
+}
+
+.userLogin {
+  grid-area: userLogin;
+}
+
+.storeNavigation {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "navigateBtns extraShopContainer";
+}
+
+.navigateBtns {
+  grid-area: navigateBtns;
+}
+
+.extraShopContainer {
+  grid-area: extraShopContainer;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.searchBar {
+  border-radius: 6px;
+  border: transparent;
+}
+
+.buttons {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.body {
+  grid-area: body;
+}
+
+.footer {
+  grid-area: footer;
+}
