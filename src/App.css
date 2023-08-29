@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+
   text-align: center;
 }
 .main {
@@ -28,11 +28,10 @@
 
 .logoContainer {
   width: 30%;
-  border: solid;
-  padding: 6px;
 }
 .menuContainer {
   width: 65%;
+  padding: 20;
 }
 
 .loginContainer {
@@ -55,6 +54,7 @@
 
 .navigateBtns {
   grid-area: navigateBtns;
+  width: 100%;
 }
 
 .extraShopContainer {
@@ -64,15 +64,34 @@
   justify-content: space-evenly;
 }
 
+.searchBarContainer {
+  padding: 10px 15px;
+}
+
 .searchBar {
   border-radius: 6px;
   border: transparent;
+  padding: 8px 20px;
+  background-color: #f5f5f5;
+  font-size: large;
 }
 
 .buttons {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 10px;
+}
+
+a:hover {
+  background-color: #f5f5f5;
+  border-radius: 6px;
 }
 
 .body {

@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/that-store-logo.png";
 export default function NavBar() {
   return (
     <>
       <div className="navBarContainer">
         <div className="logoContainer">
-          <p>This is where the logo will be</p>
+          <img src={logo} alt="" width={"200px"} height={"200px"} />
         </div>
         <div className="menuContainer">
           <div className="loginContainer">
             <div className="userLogin">
-              <p>Login Info</p>
+              <div className="loginBtn">
+                {/* when user logs in, then it can change to sign out or account */}
+                <Link to="/login">Login</Link>
+              </div>
             </div>
           </div>
           <div className="storeNavigation">
@@ -34,7 +38,7 @@ export default function NavBar() {
             </div>
             <div className="extraShopContainer">
               <form className="searchBarContainer">
-                <input className="searchBar" type="text" placeholder="Search Bar" />
+                <input className="searchBar" type="text" placeholder="Search" />
               </form>
               <div className="cartContainer">
                 <Link to="/cart">Cart</Link>
