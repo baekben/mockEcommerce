@@ -43,6 +43,7 @@
 
 .userLogin {
   grid-area: userLogin;
+  padding-right: 22px;
 }
 
 .storeNavigation {
