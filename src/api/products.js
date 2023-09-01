@@ -1,11 +1,11 @@
-const apiURL = "https://fakestoreapi.com";
+const apiURL = "https://fakestoreapi.com/products";
 
 // ************* PRODUCTS ****************** //
 
 // get all products
 export async function getAllProducts() {
   try {
-    const response = await fetch(`${apiURL}/products`);
+    const response = await fetch(`${apiURL}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -16,7 +16,7 @@ export async function getAllProducts() {
 // get a single product by id
 export async function getProduct(id) {
   try {
-    const response = await fetch(`${apiURL}/products${id}`);
+    const response = await fetch(`${apiURL}/${id}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -30,7 +30,7 @@ export async function getProduct(id) {
 // asc for ascending
 export async function sortProducts(sortType) {
   try {
-    const response = await fetch(`${apiURL}/products?sort=${sortType}`);
+    const response = await fetch(`${apiURL}?sort=${sortType}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -41,7 +41,7 @@ export async function sortProducts(sortType) {
 // get products in a specific category
 export async function specificProducts(category) {
   try {
-    const response = await fetch(`${apiURL}/products/category/${category}`);
+    const response = await fetch(`${apiURL}/category/${category}`);
     const result = await response.json();
     return result;
   } catch (error) {
