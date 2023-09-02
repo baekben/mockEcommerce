@@ -46,6 +46,10 @@
   padding-right: 22px;
 }
 
+.loginBtn:hover {
+  font-weight: bold;
+}
+
 .storeNavigation {
   width: 100%;
   display: grid;
@@ -90,7 +94,7 @@ a {
   padding: 8px 10px;
 }
 
-a:hover {
+.shopCategory:hover {
   background-color: #f5f5f5;
   border-radius: 6px;
 }
