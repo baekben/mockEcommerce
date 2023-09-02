@@ -103,6 +103,16 @@ a {
   grid-area: body;
 }
 
+/* form style */
+.formItem {
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  flex-basis: 100px;
+}
+
 .footer {
   grid-area: footer;
 }

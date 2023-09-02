@@ -42,35 +42,44 @@ export default function Login() {
             <h2>Login</h2>
           </div>
           <div className="loginArea">
-            <form onSubmit={handleSubmit}>
-              <label>
-                <input
-                  type="text"
-                  className="username"
-                  placeholder="username"
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                  }}
-                />
-              </label>
-              <label>
-                <input
-                  type="text"
-                  className="password"
-                  placeholder="password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
-              </label>
+            <form onSubmit={handleSubmit} className="loginForm">
+              <div className="formItem">
+                <label>
+                  <input
+                    type="text"
+                    className="username"
+                    placeholder="username"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+                  />
+                </label>
+              </div>
+              <div className="formItem">
+                <label>
+                  <input
+                    type="text"
+                    className="password"
+                    placeholder="password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </label>
+              </div>
+
               <button>Submit</button>
             </form>
           </div>
           {error && <p>{error}</p>}
         </div>
         <div className="signUpBox">
-          <div className="signUpTitle"></div>
-          <div className="joinArea"></div>
+          <div className="signUpTitle">
+            <h2>Sign Up</h2>
+          </div>
+          <div className="joinArea">
+            <button>Join Here</button>
+          </div>
         </div>
       </div>
     </>
