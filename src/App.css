@@ -107,10 +107,18 @@ a {
 .formItem {
   display: flex;
   justify-content: center;
+  padding: 8px 10px;
 }
 
 label {
   flex-basis: 100px;
+}
+
+.passwordView {
+  border: 1px solid gray;
+  background-color: gray;
+  margin-left: 4px;
+  padding: 2px 4px;
 }
 
 .footer {

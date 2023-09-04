@@ -6,6 +6,7 @@ export default function Login() {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [visible, setVisible] = useState(false);
   async function handleSubmit(event) {
     event.preventDefault();
     // try {
@@ -34,6 +35,10 @@ export default function Login() {
       setError("Login error");
     }
   }
+  async function openSignUpForm(e) {
+    e.preventDefault();
+    navigate("/signUp");
+  }
   return (
     <>
       <div className="loginContainer">
@@ -48,7 +53,7 @@ export default function Login() {
                   <input
                     type="text"
                     className="username"
-                    placeholder="username"
+                    placeholder="Username"
                     onChange={(e) => {
                       setUsername(e.target.value);
                     }}
@@ -58,17 +63,28 @@ export default function Login() {
               <div className="formItem">
                 <label>
                   <input
-                    type="text"
+                    type={visible ? "text" : "password"}
                     className="password"
-                    placeholder="password"
+                    placeholder="Password"
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
                   />
                 </label>
+                <div>
+                  <button
+                    type="button"
+                    className="passwordView"
+                    onClick={() => {
+                      setVisible(!visible);
+                    }}
+                  >
+                    {visible ? "Hide Password" : "Show Password"}
+                  </button>
+                </div>
               </div>
 
-              <button>Submit</button>
+              <button type="submit">Submit</button>
             </form>
           </div>
           {error && <p>{error}</p>}
@@ -78,7 +94,7 @@ export default function Login() {
             <h2>Sign Up</h2>
           </div>
           <div className="joinArea">
-            <button>Join Here</button>
+            <button onClick={openSignUpForm}>Join Here</button>
           </div>
         </div>
       </div>
