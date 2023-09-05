@@ -12,7 +12,6 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <div className="body">
-            *body*
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

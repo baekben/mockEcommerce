@@ -124,3 +124,21 @@ label {
 .footer {
   grid-area: footer;
 }
+
+.previewProducts {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.previewImg {
+  height: 100%;
+  width: auto;
+  margin: 0px 5px;
+}
+
+.previewProductImg {
+  height: 100%;
+  width: 100%;
+}
