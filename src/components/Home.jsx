@@ -5,8 +5,12 @@ export default function Home() {
   const [imgs, setImgs] = useState([]);
   useEffect(() => {
     async function getPreviewImgs() {
-      const response = await getAllProducts();
-      setImgs(response);
+      try {
+        const response = await getAllProducts();
+        setImgs(response);
+      } catch (error) {
+        console.error(error);
+      }
     }
     getPreviewImgs();
   }, []);
@@ -14,7 +18,7 @@ export default function Home() {
     <>
       <div className="homeContainer">
         <div className="title">
-          <h2>Welcome</h2>
+          <h1>Welcome</h1>
         </div>
         <div className="previewProducts">
           {imgs.slice(0, 3).map((img) => {

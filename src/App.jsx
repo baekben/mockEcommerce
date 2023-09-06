@@ -11,16 +11,16 @@ function App() {
       <div className="main">
         <BrowserRouter>
           <NavBar />
-          <div className="body">
+          <div className="content-body">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signUp" element={<SignUp />} />
             </Routes>
           </div>
-          <div className="footer">Footer</div>
         </BrowserRouter>
       </div>
+      <footer>Footer</footer>
     </>
   );
 }
