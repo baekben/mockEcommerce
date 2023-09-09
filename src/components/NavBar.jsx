@@ -14,8 +14,15 @@ export default function NavBar() {
             <div className="userLogin">
               <div className="loginBtn">
                 {/* when user logs in, then it can change to sign out or account */}
-                <Link to="/login" >Login</Link>
+                <Link to="/login">
+                  <h3>Login</h3>
+                </Link>
               </div>
+            </div>
+            <div className="cartContainer">
+              <Link to="/cart">
+                <h3>Cart</h3>
+              </Link>
             </div>
           </div>
           <div className="storeNavigation">
@@ -23,17 +30,23 @@ export default function NavBar() {
               <ul className="buttons">
                 <li>
                   <div className="shopCategory mensBtn">
-                    <Link to="/mens">Men</Link>
+                    <Link to="/mens">
+                      <h2>Men</h2>
+                    </Link>
                   </div>
                 </li>
                 <li>
                   <div className="shopCategory womensBtn">
-                    <Link to="/women">Women</Link>
+                    <Link to="/women">
+                      <h2>Women</h2>
+                    </Link>
                   </div>
                 </li>
                 <li>
                   <div className="shopCategory accessoriesBtn">
-                    <Link to="/accessories">Accessories</Link>
+                    <Link to="/accessories">
+                      <h2>Accessories</h2>
+                    </Link>
                   </div>
                 </li>
               </ul>
@@ -42,9 +55,6 @@ export default function NavBar() {
               <form className="searchBarContainer">
                 <input className="searchBar" type="text" placeholder="Search" />
               </form>
-              <div className="cartContainer">
-                <Link to="/cart">Cart</Link>
-              </div>
             </div>
           </div>
         </div>

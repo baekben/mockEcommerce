@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
 
   text-align: center;
@@ -32,19 +32,21 @@
 }
 .menuContainer {
   width: 65%;
-  padding: 20;
 }
 
 .loginContainer {
   width: 100%;
+  height: 30%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-columns: ". userLogin";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: ". userLogin cartContainer";
 }
 
 .userLogin {
   grid-area: userLogin;
-  padding-right: 22px;
+}
+.cartContainer {
+  grid-area: cartContainer;
 }
 
 .loginBtn:hover {
@@ -134,4 +136,14 @@ label {
   height: 100%;
   width: auto;
   display: block;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.message {
+  border: 5px solid transparent;
+  margin-top: 8px;
+  font-size: 50px;
 }

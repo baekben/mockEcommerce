@@ -24,13 +24,12 @@ export default function Home() {
           {imgs.slice(0, 3).map((img) => {
             return (
               <>
-                <div className="previewImg">
+                <div className="previewImg" key={img.id}>
                   <img
                     className="previewProductImg"
                     src={img.image}
                     alt={img.title}
-                    key={img.id}
-                  />
+                  ></img>
                 </div>
               </>
             );

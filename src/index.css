@@ -27,19 +27,18 @@ a {
 
 a:hover {
   color: #87ceeb;
-  font-weight: bolder;
+  text-decoration: underline;
   border-radius: 6px;
 }
 
 body {
   font-size: 16px;
-  line-height: 1.6;
   background-color: #ffffff;
   color: #a9a9a9;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
   margin-bottom: 20px;
 }
