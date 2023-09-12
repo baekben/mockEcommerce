@@ -37,7 +37,7 @@ export default function NavBar() {
                 </li>
                 <li>
                   <div className="shopCategory womensBtn">
-                    <Link to="/women">
+                    <Link to="/womens">
                       <h2>Women</h2>
                     </Link>
                   </div>

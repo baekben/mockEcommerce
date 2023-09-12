@@ -7,7 +7,7 @@
 .main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 2.4fr 0.3fr;
+  /* grid-template-rows: 0.3fr 2.4fr 0.3fr; */
   gap: 0px 0px;
   grid-template-areas:
     "navBarContainer navBarContainer navBarContainer"
