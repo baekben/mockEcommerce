@@ -165,3 +165,8 @@ label {
   display: flex;
   justify-content: space-evenly;
 }
+
+.filters > ul {
+  list-style: none;
+  padding-left: 0;
+}
