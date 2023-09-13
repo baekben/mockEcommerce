@@ -18,9 +18,21 @@ export default function Products({ category }) {
     <>
       <div className="productsContainer">
         <div className="filterMenu">
-          <div className="filters">
+          <div className="filtersContainer">
             <h2>{category.toUpperCase()}</h2>
-            <div>ul</div>
+            <div className="filters">
+              <ul>
+                <li>
+                  <a href="#">Filter1</a>
+                </li>
+                <li>
+                  <a href="#">Filter2</a>
+                </li>
+                <li>
+                  <a href="#">Filter3</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="productsList">
