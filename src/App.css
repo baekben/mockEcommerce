@@ -126,13 +126,15 @@ label {
   height: 400px;
 }
 
-.previewImg {
+.previewImg,
+.productImgItem {
   height: 400px;
   width: auto;
   margin: 0px 5px;
 }
 
-.previewProductImg {
+.previewProductImg,
+.productImg {
   height: 100%;
   width: auto;
   display: block;
@@ -146,4 +148,20 @@ label {
   border: 5px solid transparent;
   margin-top: 8px;
   font-size: 50px;
+}
+
+.productsList {
+  margin: 8px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.productContainer {
+  padding: 10px;
+}
+
+.productsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -16,18 +16,30 @@ export default function Products({ category }) {
   console.log(products);
   return (
     <>
-      <div className="products container">
+      <div className="productsContainer">
         <div className="filterMenu">
-          <div className="filters">FILTER MENU</div>
+          <div className="filters">
+            <h2>{category.toUpperCase()}</h2>
+            <div>ul</div>
+          </div>
         </div>
         <div className="productsList">
           {products.map((product) => {
             return (
               <>
                 <div className="productContainer" key={product.id}>
-                  <img src={product.image} alt={product.title} />
-                  <h3>{product.title}</h3>
-                  <p>{product.price}</p>
+                  <div className="productImgItem">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="productImg"
+                    />
+                  </div>
+
+                  <div>
+                    <p>{product.title}</p>
+                    <p>{product.price}</p>
+                  </div>
                 </div>
               </>
             );
