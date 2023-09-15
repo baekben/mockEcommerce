@@ -128,7 +128,7 @@ label {
 
 .previewImg,
 .productImgItem {
-  height: 400px;
+  height: 150px;
   width: auto;
   margin: 0px 5px;
 }
@@ -137,7 +137,6 @@ label {
 .productImg {
   height: 100%;
   width: auto;
-  display: block;
 }
 
 .title {
@@ -150,23 +149,31 @@ label {
   font-size: 50px;
 }
 
+.productsContainer {
+  margin-top: 8px;
+}
+
 .productsList {
-  margin: 8px;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
 }
 
 .productContainer {
   padding: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
 .productsContainer {
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
 }
 
-.filters > ul {
+.filterMenu {
+  border: 2px solid black;
+}
+
+.filterContainer > ul {
   list-style: none;
-  padding-left: 0;
+  display: flex;
+  justify-content: space-evenly;
 }
