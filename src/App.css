@@ -151,20 +151,27 @@ label {
 
 .productsContainer {
   margin-top: 8px;
+  width: 100%;
 }
 
 .productsList {
   display: grid;
   grid-template-columns: auto auto;
+  justify-content: center;
+  align-content: center;
 }
 
 .productContainer {
-  padding: 10px;
+  padding: 40px 8px;
   display: block;
   margin: 0 auto;
 }
 
-.productsContainer {
+.productImgItem {
+  padding: 50px;
+}
+
+.productsList {
   width: 100%;
 }
 

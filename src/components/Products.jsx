@@ -38,7 +38,7 @@ export default function Products({ category }) {
           <div className="filterMenuContainer">
             <h2>{category.toUpperCase()}</h2>
             <div className="filterContainer">
-              <ul>
+              <ul className="options">
                 <li>
                   <a href="#" onClick={updateSort}>
                     Sort: {sort}
@@ -66,7 +66,7 @@ export default function Products({ category }) {
 
                   <div>
                     <p>{product.title}</p>
-                    <p>{product.price}</p>
+                    <p>${product.price.toFixed(2)}</p>
                   </div>
                 </div>
               </>
