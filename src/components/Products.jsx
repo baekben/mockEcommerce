@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { specificProducts } from "../api/products";
-export default function Products({ category }) {
+import { Link, useParams } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
+export default function Products() {
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("desc");
+  //const navigate = useNavigate();
   useEffect(() => {
-    console.log(category);
-
     async function getProducts() {
       // sort is added with descending as default
       const encodedString = encodeURIComponent(category) + `?sort=${sort}`;
-      console.log(encodedString);
       const getProducts = await specificProducts(encodedString);
       setProducts(getProducts);
     }
@@ -30,7 +31,6 @@ export default function Products({ category }) {
     }
   }
 
-  console.log(products);
   return (
     <>
       <div className="productsContainer">
@@ -57,11 +57,16 @@ export default function Products({ category }) {
               <>
                 <div className="productContainer" key={product.id}>
                   <div className="productImgItem">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="productImg"
-                    />
+                    <Link to={`/products/${category}/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="productImg"
+                        // onClick={() => {
+                        //   navigate(`/product/${product.id}`);
+                        // }}
+                      />
+                    </Link>
                   </div>
 
                   <div>

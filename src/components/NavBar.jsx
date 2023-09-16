@@ -30,22 +30,29 @@ export default function NavBar() {
               <ul className="buttons">
                 <li>
                   <div className="shopCategory mensBtn">
-                    <Link to="/mens">
+                    <Link to="/products/men's clothing">
                       <h2>Men</h2>
                     </Link>
                   </div>
                 </li>
                 <li>
                   <div className="shopCategory womensBtn">
-                    <Link to="/womens">
+                    <Link to="/products/women's clothing">
                       <h2>Women</h2>
                     </Link>
                   </div>
                 </li>
                 <li>
-                  <div className="shopCategory accessoriesBtn">
-                    <Link to="/accessories">
-                      <h2>Accessories</h2>
+                  <div className="shopCategory jeweleryBtn">
+                    <Link to="/products/jewelery">
+                      <h2>Jewlery</h2>
+                    </Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="shopCategory electronicsBtn">
+                    <Link to="/products/electronics">
+                      <h2>Electronics</h2>
                     </Link>
                   </div>
                 </li>

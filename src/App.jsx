@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Products from "./components/Products";
+import Product from "./components/Product";
 
 function App() {
   return (
@@ -17,18 +18,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signUp" element={<SignUp />} />
+              <Route path="/products/:category" element={<Products />} />
               <Route
-                path="/mens"
-                element={<Products category={"men's clothing"} />}
-              />
-              <Route
-                path="/womens"
-                element={<Products category={"women's clothing"} />}
-              />
-              <Route
-                path="/accessories"
-                element={<Products category={"jewelery"} />}
-              />
+                path="/products/:category/:productId"
+                element={<Product />}
+              ></Route>
             </Routes>
           </div>
         </BrowserRouter>
