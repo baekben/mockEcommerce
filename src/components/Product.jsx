@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getProduct } from "../api/products";
 import { useNavigate, useParams } from "react-router-dom";
 export default function Product() {
-  const { productId } = useParams();
+  const { productId, category } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Product() {
 
   async function handleClick(e) {
     e.preventDefault();
-    navigate("/products");
+    navigate(`/products/${category}`);
   }
   return (
     <>
@@ -35,7 +35,9 @@ export default function Product() {
           </div>
           <div>
             <div>
-              <button onClick={handleClick}></button>
+              <button onClick={handleClick}>
+                Go Back to {`${category}`} Products
+              </button>
             </div>
             <div>Add to Cart</div>
           </div>
