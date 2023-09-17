@@ -7,6 +7,7 @@ export default function Products() {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("desc");
+
   //const navigate = useNavigate();
   useEffect(() => {
     async function getProducts() {
@@ -41,42 +42,60 @@ export default function Products() {
               <ul className="options">
                 <li>
                   <a href="#" onClick={updateSort}>
-                    Sort: {sort}
+                    {sort === "desc" ? (
+                      <>
+                        <p>↑ A-Z</p>
+                      </>
+                    ) : (
+                      <>
+                        <p>↓ Z-A</p>
+                      </>
+                    )}
                   </a>
                 </li>
                 <li>
-                  <a href="#">Price</a>
+                  <a href="#">
+                    <p>Price</p>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div className="productsList">
-          {products.map((product) => {
-            return (
-              <>
-                <div className="productContainer" key={product.id}>
-                  <div className="productImgItem">
-                    <Link to={`/products/${category}/${product.id}`}>
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="productImg"
-                        // onClick={() => {
-                        //   navigate(`/product/${product.id}`);
-                        // }}
-                      />
-                    </Link>
-                  </div>
+          {products.length > 0 ? (
+            products.map((product) => {
+              return (
+                <>
+                  <div className="productContainer" key={product.id}>
+                    <div className="productImgItem">
+                      <Link to={`/products/${category}/${product.id}`}>
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="productImg"
+                          // onClick={() => {
+                          //   navigate(`/product/${product.id}`);
+                          // }}
+                        />
+                      </Link>
+                    </div>
 
-                  <div>
-                    <p>{product.title}</p>
-                    <p>${product.price.toFixed(2)}</p>
+                    <div>
+                      <p>{product.title}</p>
+                      <p>${product.price.toFixed(2)}</p>
+                    </div>
                   </div>
-                </div>
-              </>
-            );
-          })}
+                </>
+              );
+            })
+          ) : (
+            <>
+              <div className="loader-container">
+                <div className="spinner"></div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

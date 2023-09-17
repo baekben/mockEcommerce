@@ -21,25 +21,33 @@ export default function Product() {
   return (
     <>
       {product && (
-        <div>
-          <div>
-            <div>Product Name {product.id}</div>
-          </div>
-          <div>
-            <div>
-              Product Image <img src={product.image} alt="" />
+        <div className="product-Container">
+          <div className="titleContainer">
+            <div className="productTitle">
+              <h2>{product.title}</h2>
             </div>
           </div>
-          <div>
-            <div>Description{product.description}</div>
-          </div>
-          <div>
-            <div>
-              <button onClick={handleClick}>
-                Go Back to {`${category}`} Products
-              </button>
+          <div className="productInfoContainer">
+            <div className="productImgContainer">
+              <div>
+                <img src={product.image} alt="" className="product-Img" />
+              </div>
             </div>
-            <div>Add to Cart</div>
+            <div className="productDescription">
+              <div>{product.description}</div>
+              <div className="buttonContainer">
+                <div>
+                  <button onClick={handleClick}>
+                    Go Back to {`${category}`} products
+                  </button>
+                </div>
+                <div>
+                  <button type="button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <br />
           </div>
         </div>
       )}
