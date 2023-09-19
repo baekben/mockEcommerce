@@ -18,6 +18,11 @@ export default function Product() {
     e.preventDefault();
     navigate(`/products/${category}`);
   }
+
+  async function addToCart(e) {
+    e.preventDefault();
+    console.log(`Adding ${product.title} with id ${productId} to cart`);
+  }
   return (
     <>
       {product && (
@@ -33,21 +38,27 @@ export default function Product() {
                 <img src={product.image} alt="" className="product-Img" />
               </div>
             </div>
-            <div className="productDescription">
-              <div>{product.description}</div>
-              <div className="buttonContainer">
-                <div>
+            <div className="productCostInfo">
+              <div className="priceContainer">
+                <h2>$ {product.price}</h2>
+              </div>
+              <div className="buttons">
+                <div className="buttonsContainer">
                   <button onClick={handleClick}>
                     Go Back to {`${category}`} products
                   </button>
                 </div>
-                <div>
-                  <button type="button">Add to Cart</button>
+                <div className="buttonsContainer">
+                  <button type="button" onClick={addToCart}>
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>
-
             <br />
+          </div>
+          <div className="productDescription">
+            <div>{product.description}</div>
           </div>
         </div>
       )}
