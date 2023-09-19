@@ -255,3 +255,9 @@ label {
 .product-Img {
   height: 500px;
 }
+
+/* footer styles */
+footer {
+  display: flex;
+  justify-content: space-evenly;
+}
