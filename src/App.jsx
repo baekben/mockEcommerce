@@ -6,8 +6,17 @@ import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Products from "./components/Products";
 import Product from "./components/Product";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faXTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 function App() {
+  library.add(fas, faFacebook, faXTwitter, faInstagram);
   return (
     <>
       <div className="main">
@@ -38,15 +47,13 @@ function App() {
               <p>
                 <a href="#">Contact Us</a>
                 <a href="#ig">
-                  ig
-                  {/* <i className="fa-brands fa-instagram"></i> */}
+                  <FontAwesomeIcon icon="fa-brands fa-instagram" />
                 </a>
                 <a href="#fb">
-                  fb
-                  {/* <i className="fa-brands fa-facebook"></i> */}
+                  <FontAwesomeIcon icon="fa-brands fa-facebook" />
                 </a>
                 <a href="#x">
-                  x{/* <i className="fa-brands fa-x-twitter"></i> */}
+                  <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
                 </a>
                 <a href="#github">GitHub Repo</a>
               </p>

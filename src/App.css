@@ -82,6 +82,12 @@
   font-weight: bold;
 }
 
+.userSignInContainer {
+  display: flex;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+}
+
 .storeNavigation {
   width: 100%;
   display: grid;
@@ -211,9 +217,9 @@ label {
   width: 100%;
 }
 
-.filterMenu {
+/* .filterMenu {
   border: 2px solid black;
-}
+} */
 
 .filterContainer > ul {
   list-style: none;
@@ -242,8 +248,14 @@ label {
 }
 
 .priceContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.itemPrice {
   border: 2px solid black;
   border-radius: 5px;
+  width: fit-content;
 }
 
 .buttons {

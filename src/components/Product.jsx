@@ -40,7 +40,7 @@ export default function Product() {
             </div>
             <div className="productCostInfo">
               <div className="priceContainer">
-                <h2>$ {product.price}</h2>
+                <h2 className="itemPrice">$ {product.price}</h2>
               </div>
               <div className="buttons">
                 <div className="buttonsContainer">
@@ -54,11 +54,11 @@ export default function Product() {
                   </button>
                 </div>
               </div>
+              <div className="productDescription">
+                <div>{product.description}</div>
+              </div>
             </div>
             <br />
-          </div>
-          <div className="productDescription">
-            <div>{product.description}</div>
           </div>
         </div>
       )}
