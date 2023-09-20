@@ -7,6 +7,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
+
   async function handleSubmit(event) {
     event.preventDefault();
     // try {
@@ -28,17 +29,20 @@ export default function Login() {
     try {
       const response = await userLogin(username, password);
       console.log(response);
-
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
       navigate("/");
     } catch (error) {
       console.error("Error", error);
       setError("Login error");
     }
   }
+
   async function openSignUpForm(e) {
     e.preventDefault();
     navigate("/signUp");
   }
+
   return (
     <>
       <div className="userSignInContainer">
