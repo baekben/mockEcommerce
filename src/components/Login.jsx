@@ -31,6 +31,7 @@ export default function Login() {
       console.log(response);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
+      localStorage.setItem("loggedIn", true);
       navigate("/");
     } catch (error) {
       console.error("Error", error);

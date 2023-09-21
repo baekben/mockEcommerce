@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/that-store-logo.png";
+import { useEffect, useState } from "react";
 export default function NavBar() {
+  const [logout, setLogout] = useState(false);
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn");
+    loggedIn ? setLogout(true) : setLogout(false);
+  }, []);
+
+  async function logoutUser() {
+    localStorage.clear();
+  }
+
   return (
     <>
       <div className="navBarContainer">
@@ -14,10 +25,21 @@ export default function NavBar() {
             <div className="userLogin">
               <div className="loginBtn">
                 {/* when user logs in, then it can change to sign out or account */}
-                <Link to="/login">
-                  <h3>Login</h3>
-                </Link>
+                {logout ? (
+                  localStorage.getItem("username")
+                ) : (
+                  <Link to="/login">
+                    <h3>Login</h3>
+                  </Link>
+                )}
               </div>
+              {logout && (
+                <>
+                  <div className="logoutContainer">
+                    <button onClick={logoutUser}>Logout</button>
+                  </div>
+                </>
+              )}
             </div>
             <div className="cartContainer">
               <Link to="/cart">
