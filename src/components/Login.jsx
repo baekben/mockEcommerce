@@ -10,6 +10,7 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     // try {
     //   const response = await fetch("https://fakestoreapi.com/auth/login", {
     //     method: "POST",
@@ -32,7 +33,9 @@ export default function Login() {
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       localStorage.setItem("loggedIn", true);
+      localStorage.setItem("userToken", response.token);
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Error", error);
       setError("Login error");

@@ -10,6 +10,7 @@ export default function NavBar() {
 
   async function logoutUser() {
     localStorage.clear();
+    window.location.reload();
   }
 
   return (
@@ -26,7 +27,9 @@ export default function NavBar() {
               <div className="loginBtn">
                 {/* when user logs in, then it can change to sign out or account */}
                 {logout ? (
-                  localStorage.getItem("username")
+                  <h3 className="username">
+                    {localStorage.getItem("username")}
+                  </h3>
                 ) : (
                   <Link to="/login">
                     <h3>Login</h3>

@@ -21,19 +21,24 @@ function App() {
     <>
       <div className="main">
         <BrowserRouter>
-          <NavBar />
-          <div className="content-body">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signUp" element={<SignUp />} />
-              <Route path="/products/:category" element={<Products />} />
-              <Route
-                path="/products/:category/:productId"
-                element={<Product />}
-              ></Route>
-            </Routes>
-          </div>
+          <header>
+            <NavBar />
+          </header>
+          <main>
+            <div className="content-body">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signUp" element={<SignUp />} />
+                <Route path="/products/:category" element={<Products />} />
+                <Route
+                  path="/products/:category/:productId"
+                  element={<Product />}
+                ></Route>
+              </Routes>
+            </div>
+          </main>
+
           <footer>
             <div>
               <p>
