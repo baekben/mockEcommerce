@@ -34,6 +34,7 @@ export default function Login() {
       localStorage.setItem("password", password);
       localStorage.setItem("loggedIn", true);
       localStorage.setItem("userToken", response.token);
+      // need user id?
       navigate("/");
       window.location.reload();
     } catch (error) {

@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Products from "./components/Products";
 import Product from "./components/Product";
+import Cart from "./components/Cart";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -35,6 +36,7 @@ function App() {
                   path="/products/:category/:productId"
                   element={<Product />}
                 ></Route>
+                <Route path="/cart" element={<Cart />} />
               </Routes>
             </div>
           </main>
