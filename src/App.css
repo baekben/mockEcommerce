@@ -160,7 +160,7 @@ button:hover {
 .buttons {
   list-style-type: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-weight: bold;
   margin-top: 15px;
 }

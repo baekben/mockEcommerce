@@ -2,14 +2,24 @@
 import { useState, useEffect } from "react";
 import { getProduct } from "../api/products";
 import { useNavigate, useParams } from "react-router-dom";
+import { addNewItems } from "../api/cart";
 export default function Product() {
   const { productId, category } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
+  const [userId, setUserId] = useState();
+  const [quantity, setQuantity] = useState(1);
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const date = `${year}-${month}-${day}`;
   useEffect(() => {
     async function getProductInfo() {
       const productInfo = await getProduct(productId);
       setProduct(productInfo);
+      setUserId(localStorage.getItem("userId"));
     }
     getProductInfo();
   }, [productId]);
@@ -21,7 +31,11 @@ export default function Product() {
 
   async function addToCart(e) {
     e.preventDefault();
-    console.log(`Adding ${product.title} with id ${productId} to cart`);
+    console.log(`Adding ${product.title} with id ${productId} to cart...`);
+    await addNewItems(userId, date, {
+      productId: productId,
+      quantity: quantity,
+    });
   }
   return (
     <>
@@ -41,6 +55,29 @@ export default function Product() {
             <div className="productCostInfo">
               <div className="priceContainer">
                 <h2 className="itemPrice">$ {product.price}</h2>
+              </div>
+              <div className="quantityInput">
+                <button
+                  onClick={() => {
+                    setQuantity((quantity) => quantity - 1);
+                  }}
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  value={quantity}
+                  onChange={(e) => {
+                    setQuantity(parseInt(e.target.value) || 1);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    setQuantity((quantity) => quantity + 1);
+                  }}
+                >
+                  +
+                </button>
               </div>
               <div className="buttons">
                 <div className="buttonsContainer">
