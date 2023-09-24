@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { userLogin } from "../api/login";
 import { useNavigate } from "react-router-dom";
+import { getUsers } from "../api/user";
 export default function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [allUsers, setAllUsers] = useState();
+
+  useEffect(() => {
+    async function grabUsers() {
+      const users = await getUsers();
+      setAllUsers(users);
+    }
+    grabUsers();
+  }, [allUsers]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -29,13 +39,17 @@ export default function Login() {
     // }
     try {
       const response = await userLogin(username, password);
+
+      const user = allUsers.find((obj) => obj.username === username);
+      console.log("userLogin", user.id);
       console.log(response);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       localStorage.setItem("loggedIn", true);
       localStorage.setItem("userToken", response.token);
+      localStorage.setItem("userId", user.id);
       // need user id?
-      navigate("/");
+      //navigate("/");
       window.location.reload();
     } catch (error) {
       console.error("Error", error);

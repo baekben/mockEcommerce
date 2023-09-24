@@ -49,9 +49,15 @@ export default function Cart() {
             <table className="items">
               <thead>
                 <tr>
-                  <th>Product</th>
-                  <th>Quantity</th>
-                  <th>Cost</th>
+                  <th>
+                    <h2>Product</h2>
+                  </th>
+                  <th>
+                    <h2>Quantity</h2>
+                  </th>
+                  <th>
+                    <h2>Cost</h2>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -60,9 +66,16 @@ export default function Cart() {
                     return (
                       <>
                         <tr key={item.id}>
-                          <td>{item.productInfo.title}</td>
-                          <td>{item.quantity}</td>
-                          <td>${item.itemTotal}</td>
+                          <td>
+                            <h2>{item.productInfo.title}</h2>
+                          </td>
+                          <td>
+                            <h2>{item.quantity}</h2>
+                          </td>
+                          <td>
+                            <h2>${item.itemTotal}</h2>
+                          </td>
+                          <td>Delete</td>
                         </tr>
                       </>
                     );
@@ -82,18 +95,18 @@ export default function Cart() {
         </div>
         <div className="orderSummary">
           <div>
-            <h2>Summary</h2>
+            <h1>Summary</h1>
           </div>
           <div className="costPreview">
             <div>
               <div>
                 <p>
-                  SubTotal: <b>${totalCost}</b>
+                  Total: <b>${totalCost}</b>
                 </p>
               </div>
-              <div>
+              {/* <div>
                 <p>Total ahhh</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="checkoutBtnContainer">
