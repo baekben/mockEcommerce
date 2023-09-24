@@ -5,7 +5,6 @@ export default function Cart() {
   const [cart, setCart] = useState({});
   const [totalCost, setTotalCost] = useState(0);
   // placeholding cart
-  const userId = 5;
   useEffect(() => {
     async function getUserCart(userId) {
       const cartItems = await getCart(userId);
@@ -22,8 +21,9 @@ export default function Cart() {
       setTotalCost(total);
       setCart(cartProducts);
     }
+    const userId = localStorage.getItem("userId");
     getUserCart(userId);
-  }, [userId]);
+  }, []);
 
   //   async function getCartProduct(item) {
   //     console.log(item);
@@ -58,6 +58,7 @@ export default function Cart() {
                   <th>
                     <h2>Cost</h2>
                   </th>
+                  <th> </th>
                 </tr>
               </thead>
               <tbody>
@@ -65,7 +66,7 @@ export default function Cart() {
                   cart.map((item) => {
                     return (
                       <>
-                        <tr key={item.id}>
+                        <tr key={item.id + " cart item"}>
                           <td>
                             <h2>{item.productInfo.title}</h2>
                           </td>
