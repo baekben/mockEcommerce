@@ -31,11 +31,37 @@ export default function Product() {
 
   async function addToCart(e) {
     e.preventDefault();
-    console.log(`Adding ${product.title} with id ${productId} to cart...`);
-    await addNewItems(userId, date, {
-      productId: productId,
-      quantity: quantity,
-    });
+
+    if (localStorage.getItem("loggedIn") !== null) {
+      console.log(
+        `Adding ${quantity} ${product.title} with id ${productId} to cart...`
+      );
+      await addNewItems(userId, date, {
+        productId: productId,
+        quantity: quantity,
+      });
+    } else {
+      let userCart = JSON.parse(localStorage.getItem("guestCart"));
+      if (userCart === "") {
+        userCart = [
+          {
+            title: product.title,
+            productId: productId,
+            quantity: quantity,
+            price: product.price,
+          },
+        ];
+      } else {
+        userCart.push({
+          title: product.title,
+          productId: productId,
+          quantity: quantity,
+          price: product.price,
+        });
+      }
+      userCart = JSON.stringify(userCart);
+      localStorage.setItem("guestCart", userCart);
+    }
   }
   return (
     <>

@@ -7,23 +7,37 @@ export default function Cart() {
   // placeholding cart
   useEffect(() => {
     async function getUserCart(userId) {
-      const cartItems = await getCart(userId);
-      const cartProducts = cartItems.products;
-      let total = 0;
-      for (let index in cartProducts) {
-        const productObj = cartProducts[index];
-        const product = await getProduct(productObj.productId);
-        productObj.productInfo = product;
-        const itemTotal = product.price * productObj.quantity;
-        productObj.itemTotal = itemTotal;
-        total = total + itemTotal;
+      const loggedIn = localStorage.getItem("loggedIn");
+      if (loggedIn !== null) {
+        const cartItems = await getCart(userId);
+        const cartProducts = cartItems.products;
+        await itemsInCart(cartProducts);
+      } else {
+        // if user is not logged in then the cart should be from localstorage
+
+        const cartItems = JSON.parse(localStorage.getItem("userCart"));
+
+        const cartProducts = cartItems;
+        await itemsInCart(cartProducts);
       }
-      setTotalCost(total);
-      setCart(cartProducts);
     }
     const userId = localStorage.getItem("userId");
     getUserCart(userId);
   }, []);
+
+  async function itemsInCart(cartProducts) {
+    let total = 0;
+    for (let index in cartProducts) {
+      const productObj = cartProducts[index];
+      const product = await getProduct(productObj.productId);
+      productObj.productInfo = product;
+      const itemTotal = product.price * product.quantity;
+      productObj.itemTotal = itemTotal;
+      total = total + itemTotal;
+    }
+    setTotalCost(total);
+    setCart(cartProducts);
+  }
 
   //   async function getCartProduct(item) {
   //     console.log(item);

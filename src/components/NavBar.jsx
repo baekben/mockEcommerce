@@ -5,7 +5,7 @@ export default function NavBar() {
   const [logout, setLogout] = useState(false);
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
-    loggedIn ? setLogout(true) : setLogout(false);
+    loggedIn !== "guest" ? setLogout(true) : setLogout(false);
   }, []);
 
   async function logoutUser() {
@@ -45,9 +45,11 @@ export default function NavBar() {
               )}
             </div>
             <div className="cartContainer">
-              <Link to="/cart">
-                <h3>Cart</h3>
-              </Link>
+              <div className="cartBtn">
+                <Link to="/cart">
+                  <h3>Cart</h3>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="storeNavigation">

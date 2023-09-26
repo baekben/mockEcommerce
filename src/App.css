@@ -1,14 +1,14 @@
 #root {
   /* max-width: 1280px; */
-  margin: 0 auto;
+  margin: 0 0;
   text-align: center;
   width: max(350px, 100%);
 }
-body,
-html {
-  display: flex;
-  flex-direction: column;
+html,
+body {
+  margin: 0;
 }
+
 header,
 main,
 footer {
@@ -318,7 +318,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: stretch;
   height: 100%;
 }

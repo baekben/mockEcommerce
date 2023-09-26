@@ -65,7 +65,7 @@ export async function getCartsByDate(startDate = "", endDate = "") {
 // get user's cart
 export async function getUserCart(id) {
   try {
-    const response = await fetch(`${apiURL}/user/2`);
+    const response = await fetch(`${apiURL}/user/${id}`);
     const result = await response.json();
     return result;
   } catch (error) {

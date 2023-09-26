@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { useEffect } from "react";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
@@ -18,6 +19,24 @@ import {
 
 function App() {
   library.add(fas, faFacebook, faXTwitter, faInstagram);
+
+  useEffect(() => {
+    async function guestCart() {
+      localStorage.setItem("loggedIn", "guest");
+
+      // guest cart will be local storage
+      localStorage.setItem("guestCart", []);
+    }
+    console.log("app.jsx run");
+    localStorage.getItem("loggedIn") === null
+      ? guestCart()
+      : console.log("user logged in");
+    // if (userLoggedIn) {
+    //   console.log("hello");
+    //   guestCart();
+    // }
+  }, []);
+
   return (
     <>
       <div className="main">
