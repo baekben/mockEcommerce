@@ -57,7 +57,7 @@ export default function Product() {
         );
         console.log(itemExists);
 
-        if (itemExists !== null) {
+        if (itemExists !== undefined) {
           const index = userCart.indexOf(itemExists);
           userCart[index].quantity++;
         } else {

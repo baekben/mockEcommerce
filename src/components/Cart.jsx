@@ -45,18 +45,11 @@ export default function Cart() {
     setCart(cartProducts);
   }
 
-  //   async function getCartProduct(item) {
-  //     console.log(item);
-  //     const productName = await getProduct(item.productId);
-  //     return (
-  //       <>
-  //         <tr className={item.id}>
-  //           <td>{productName}</td>
-  //           <td>{item.quantity}</td>
-  //         </tr>
-  //       </>
-  //     );
-  //   }
+  async function clearCart() {
+    localStorage.setItem("guestCart", JSON.stringify([]));
+    setCart([]);
+    setTotalCost(0);
+  }
 
   return (
     <>
@@ -64,6 +57,9 @@ export default function Cart() {
         <div className="listCart">
           <div>
             <h1>Cart</h1>
+            <div className="clearCartBtn">
+              <button onClick={clearCart}>Clear Cart</button>
+            </div>
           </div>
           <div className="cartItems">
             <table className="items">

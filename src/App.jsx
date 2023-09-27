@@ -25,7 +25,9 @@ function App() {
       localStorage.setItem("loggedIn", "guest");
 
       // guest cart will be local storage
-      localStorage.setItem("guestCart", JSON.stringify([]));
+      if (localStorage.getItem("guestCart") === null) {
+        localStorage.setItem("guestCart", JSON.stringify([]));
+      }
     }
 
     localStorage.getItem("loggedIn") === "guest"
