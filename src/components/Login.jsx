@@ -8,41 +8,41 @@ export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
-  const [allUsers, setAllUsers] = useState();
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     async function grabUsers() {
-      const users = await getUsers();
-      setAllUsers(users);
+      const currentUsers = JSON.parse(localStorage.getItem("apiUsers"));
+      if (currentUsers === null) {
+        const users = await getUsers();
+        setAllUsers(users);
+        localStorage.setItem("apiUsers", JSON.stringify(users));
+      } else {
+        setAllUsers(currentUsers);
+      }
     }
     grabUsers();
-  }, [allUsers]);
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    // try {
-    //   const response = await fetch("https://fakestoreapi.com/auth/login", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json", Accept: "*/*" }, //why does this need to be here?
-    //     body: JSON.stringify({
-    //       username: username,
-    //       password: password,
-    //     }),
-    //   });
-    //   const result = await response.json();
-    //   console.log(result);
-    //   navigate("/");
-    // } catch (error) {
-    //   console.error(`Error in login `, error);
-    //   setError(error.message);
-    // }
     try {
       const response = await userLogin(username, password);
-
-      const user = allUsers.find((obj) => obj.username === username);
-      console.log("userLogin", user.id);
-      console.log(response);
+      if (response) {
+        const user = allUsers.find((obj) => obj.username === username);
+        console.log("userLogin", user.id);
+        console.log(response);
+      }else{
+        const loggedInUser = 
+      }
+      const userInfo = JSON.stringify({
+        username: username,
+        password: password,
+        userToken: response.token,
+        userId: user.id,
+      });
+      localStorage.setItem(`${username}-info`, userInfo);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       localStorage.setItem("loggedIn", true);

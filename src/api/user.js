@@ -35,31 +35,16 @@ export async function adjustUsers(limit = "", sort = "") {
 }
 
 // add a new user
-export async function addUser(email, username, password, userInfo) {
+export async function addUser(newUserInfo) {
   try {
     const response = await fetch(`${apiURL}`, {
       method: "POST",
-      body: JSON.stringify({
-        email: email,
-        username: username,
-        password: password,
-        name: {
-          firstname: userInfo.firstName,
-          lastName: userInfo.lastName,
-        },
-        address: {
-          city: userInfo.city,
-          street: userInfo.address,
-          number: userInfo.addressNum,
-          zipcode: userInfo.zipcode,
-        },
-        phone: userInfo.phone,
-      }),
+      body: JSON.stringify(newUserInfo),
     });
     const result = await response.json();
     return result;
   } catch (error) {
-    console.error(`Error in adding user ${username} `, error);
+    console.error(`Error in adding user ${newUserInfo.username} `, error);
   }
 }
 

@@ -33,11 +33,7 @@ export default function Cart() {
         console.log(productObj);
         const product = await getProduct(productObj.productId);
         productObj.productInfo = product;
-        console.log();
-        console.log(typeof product.price);
-        console.log(typeof product.quantity);
         const itemTotal = product.price * productObj.quantity;
-        console.log(itemTotal);
         productObj.itemTotal = itemTotal;
         total = total + itemTotal;
       }

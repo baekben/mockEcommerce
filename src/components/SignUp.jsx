@@ -4,26 +4,47 @@ import { useNavigate } from "react-router-dom";
 export default function SignUp() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    addressNum: "",
-    city: "",
-    zipcode: "",
-    phone: "",
+    firstName: "firstName",
+    lastName: "lastName",
+    address: "123 not real",
+    addressNum: "123",
+    city: "city",
+    zipcode: "123456",
+    phone: "123456789",
   });
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("fake@noRealEmail.com");
+  const [username, setUsername] = useState("noUsername");
+  const [password, setPassword] = useState("noPassword");
+  const [confirmPassword, setConfirmPassword] = useState("noPassword");
   const [checkPassword, setCheckPassword] = useState(true);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      const currentUsers = JSON.parse(localStorage.getItem("apiUsers"));
       if (password === confirmPassword) {
-        const newUser = await addUser(email, username, password, userInfo);
+        const newUserInfo = {
+          email: email,
+          username: username,
+          password: password,
+          name: {
+            firstname: userInfo.firstName,
+            lastName: userInfo.lastName,
+          },
+          address: {
+            city: userInfo.city,
+            street: userInfo.address,
+            number: userInfo.addressNum,
+            zipcode: userInfo.zipcode,
+          },
+          phone: userInfo.phone,
+        };
+        const newUser = await addUser(newUserInfo);
         if (newUser) {
+          newUserInfo.id = newUser.id;
+          console.log(newUser);
+          currentUsers.push(newUserInfo);
+          localStorage.setItem("apiUsers", JSON.stringify(currentUsers));
           navigate("/login");
         }
       } else {
