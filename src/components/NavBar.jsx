@@ -9,7 +9,7 @@ export default function NavBar() {
   }, []);
 
   async function logoutUser() {
-    localStorage.clear();
+    localStorage.setItem("loggedIn", "guest");
     window.location.reload();
   }
 

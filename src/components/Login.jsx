@@ -3,8 +3,8 @@ import { userLogin } from "../api/login";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../api/user";
 export default function Login() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
@@ -28,28 +28,31 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await userLogin(username, password);
-      if (response) {
-        const user = allUsers.find((obj) => obj.username === username);
+      let response = await userLogin(username, password);
+      const user = allUsers.find(
+        (user) => user.username === username && user.password === password
+      );
+      console.log(user);
+      if (user) {
         console.log("userLogin", user.id);
-        console.log(response);
-      }else{
-        const loggedInUser = 
+        response ? response : (response = { token: "createdUser" });
+        const userInfo = JSON.stringify({
+          username: username,
+          password: password,
+          userToken: response.token,
+          userId: user.id,
+        });
+        localStorage.setItem(`${username}-info`, userInfo);
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("userToken", response.token);
+        localStorage.setItem("userId", user.id);
+        navigate("/");
+      } else {
+        console.log("user does not exist");
+        setError("User does not exist");
       }
-      const userInfo = JSON.stringify({
-        username: username,
-        password: password,
-        userToken: response.token,
-        userId: user.id,
-      });
-      localStorage.setItem(`${username}-info`, userInfo);
-      localStorage.setItem("username", username);
-      localStorage.setItem("password", password);
-      localStorage.setItem("loggedIn", true);
-      localStorage.setItem("userToken", response.token);
-      localStorage.setItem("userId", user.id);
-      // need user id?
-      //navigate("/");
       window.location.reload();
     } catch (error) {
       console.error("Error", error);
