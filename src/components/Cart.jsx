@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import { getCart } from "../api/cart";
 import { getProduct } from "../api/products";
 export default function Cart() {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   // placeholding cart
   useEffect(() => {
     async function getUserCart(userId) {
       const loggedIn = localStorage.getItem("loggedIn");
-      if (loggedIn !== null) {
+      if (loggedIn !== "guest") {
         const cartItems = await getCart(userId);
         const cartProducts = cartItems.products;
         await itemsInCart(cartProducts);
       } else {
         // if user is not logged in then the cart should be from localstorage
 
-        const cartItems = JSON.parse(localStorage.getItem("userCart"));
+        const cartItems = JSON.parse(localStorage.getItem("guestCart"));
 
-        const cartProducts = cartItems;
+        const cartProducts = cartItems === null ? [] : cartItems;
         await itemsInCart(cartProducts);
       }
     }
@@ -27,13 +27,23 @@ export default function Cart() {
 
   async function itemsInCart(cartProducts) {
     let total = 0;
-    for (let index in cartProducts) {
-      const productObj = cartProducts[index];
-      const product = await getProduct(productObj.productId);
-      productObj.productInfo = product;
-      const itemTotal = product.price * product.quantity;
-      productObj.itemTotal = itemTotal;
-      total = total + itemTotal;
+    if (cartProducts.length > 0) {
+      for (let index in cartProducts) {
+        const productObj = cartProducts[index];
+        console.log(productObj);
+        const product = await getProduct(productObj.productId);
+        productObj.productInfo = product;
+        console.log();
+        console.log(typeof product.price);
+        console.log(typeof product.quantity);
+        const itemTotal = product.price * productObj.quantity;
+        console.log(itemTotal);
+        productObj.itemTotal = itemTotal;
+        total = total + itemTotal;
+      }
+      console.log(cartProducts);
+    } else {
+      cartProducts = [];
     }
     setTotalCost(total);
     setCart(cartProducts);

@@ -25,10 +25,10 @@ function App() {
       localStorage.setItem("loggedIn", "guest");
 
       // guest cart will be local storage
-      localStorage.setItem("guestCart", []);
+      localStorage.setItem("guestCart", JSON.stringify([]));
     }
-    console.log("app.jsx run");
-    localStorage.getItem("loggedIn") === null
+
+    localStorage.getItem("loggedIn") === "guest"
       ? guestCart()
       : console.log("user logged in");
     // if (userLoggedIn) {

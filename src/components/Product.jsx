@@ -32,7 +32,7 @@ export default function Product() {
   async function addToCart(e) {
     e.preventDefault();
 
-    if (localStorage.getItem("loggedIn") !== null) {
+    if (localStorage.getItem("loggedIn") !== "guest") {
       console.log(
         `Adding ${quantity} ${product.title} with id ${productId} to cart...`
       );
