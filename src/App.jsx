@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
+import { getAllProducts } from "../src/api/products";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -23,10 +24,11 @@ function App() {
   useEffect(() => {
     async function guestCart() {
       localStorage.setItem("loggedIn", "guest");
-
+      const allProducts = await getAllProducts();
+      localStorage.setItem("allProducts", JSON.stringify(allProducts));
       // guest cart will be local storage
-      if (localStorage.getItem("guestCart") === null) {
-        localStorage.setItem("guestCart", JSON.stringify([]));
+      if (localStorage.getItem("userCart") === null) {
+        localStorage.setItem("userCart", JSON.stringify([]));
       }
     }
 
@@ -54,9 +56,14 @@ function App() {
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/products/:category" element={<Products />} />
                 <Route
+                  path="/products/:category/:searchTerm"
+                  element={<Products />}
+                />
+                <Route
                   path="/products/:category/:productId"
                   element={<Product />}
-                ></Route>
+                />
+
                 <Route path="/cart" element={<Cart />} />
               </Routes>
             </div>

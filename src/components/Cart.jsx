@@ -15,7 +15,7 @@ export default function Cart() {
       } else {
         // if user is not logged in then the cart should be from localstorage
 
-        const cartItems = JSON.parse(localStorage.getItem("guestCart"));
+        const cartItems = JSON.parse(localStorage.getItem("cart"));
 
         const cartProducts = cartItems === null ? [] : cartItems;
         await itemsInCart(cartProducts);
@@ -46,7 +46,7 @@ export default function Cart() {
   }
 
   function clearCart() {
-    localStorage.setItem("guestCart", JSON.stringify([]));
+    localStorage.setItem("cart", JSON.stringify([]));
     setCart([]);
     setTotalCost(0);
   }
@@ -58,7 +58,7 @@ export default function Cart() {
     const newTotal = totalCost - itemToDelete.itemTotal;
     console.log("newTotal");
     setTotalCost(newTotal);
-    localStorage.setItem("guestCart", JSON.stringify(newCart));
+    localStorage.setItem("cart", JSON.stringify(newCart));
   }
 
   return (

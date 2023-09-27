@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../api/products";
 
 export default function Home() {
   const [imgs, setImgs] = useState([]);
   useEffect(() => {
     async function getPreviewImgs() {
       try {
-        const response = await getAllProducts();
+        const response = await JSON.parse(localStorage.getItem("allProducts"));
         setImgs(response);
       } catch (error) {
         console.error(error);

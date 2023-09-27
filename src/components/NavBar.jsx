@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/that-store-logo.png";
 import { useEffect, useState } from "react";
 export default function NavBar() {
   const [logout, setLogout] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  // const [filteredItems, setFilteredItems] = useState([]);
+  const allProducts = JSON.parse(localStorage.getItem("allProducts"));
+  const navigate = useNavigate();
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
     loggedIn !== "guest" ? setLogout(true) : setLogout(false);
@@ -11,6 +15,19 @@ export default function NavBar() {
   async function logoutUser() {
     localStorage.setItem("loggedIn", "guest");
     window.location.reload();
+  }
+
+  async function handleSearch(e) {
+    e.preventDefault();
+
+    const filteredResults = await allProducts.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    console.log("filtered", filteredResults);
+
+    localStorage.setItem("filteredList", JSON.stringify(filteredResults));
+    setSearchTerm("");
+    navigate(`/products/searched/${searchTerm}`);
   }
 
   return (
@@ -86,8 +103,16 @@ export default function NavBar() {
               </ul>
             </div>
             <div className="extraShopContainer">
-              <form className="searchBarContainer">
-                <input className="searchBar" type="text" placeholder="Search" />
+              <form className="searchBarContainer" onSubmit={handleSearch}>
+                <input
+                  className="searchBar"
+                  type="text"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                  }}
+                />
               </form>
             </div>
           </div>

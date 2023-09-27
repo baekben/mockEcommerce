@@ -4,7 +4,7 @@ import { specificProducts } from "../api/products";
 import { Link, useParams } from "react-router-dom";
 //import { useNavigate } from "react-router-dom";
 export default function Products() {
-  const { category } = useParams();
+  const { category, searchTerm } = useParams();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("desc");
 
@@ -12,13 +12,21 @@ export default function Products() {
   useEffect(() => {
     async function getProducts() {
       // sort is added with descending as default
-      const encodedString = encodeURIComponent(category) + `?sort=${sort}`;
-      const getProducts = await specificProducts(encodedString);
-      setProducts(getProducts);
+      if (searchTerm !== undefined) {
+        const filteredList = JSON.parse(localStorage.getItem("filteredList"));
+        setProducts(filteredList);
+        console.log(filteredList);
+      } else {
+        const encodedString = encodeURIComponent(category) + `?sort=${sort}`;
+        const getProducts = await specificProducts(encodedString);
+        localStorage.setItem("displayProducts", JSON.stringify(getProducts));
+        setProducts(getProducts);
+      }
     }
     getProducts();
-  }, [category, sort]);
+  }, [category, sort, searchTerm]);
 
+  // asending or descending order of products
   useEffect(() => {
     setSort("desc");
   }, [category]);
@@ -31,6 +39,7 @@ export default function Products() {
       setSort("desc");
     }
   }
+
 
   return (
     <>
@@ -84,6 +93,10 @@ export default function Products() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price.toFixed(2)}</p>
+                      <p>
+                        Rating: {product.rating.rate}/5{" "}
+                        {`(${product.rating.count})`}
+                      </p>
                     </div>
                   </div>
                 </>

@@ -19,10 +19,11 @@ export default function Product() {
     async function getProductInfo() {
       const productInfo = await getProduct(productId);
       setProduct(productInfo);
+
       setUserId(localStorage.getItem("userId"));
     }
     getProductInfo();
-  }, [productId]);
+  }, [productId, category]);
 
   async function handleClick(e) {
     e.preventDefault();
@@ -41,7 +42,7 @@ export default function Product() {
         quantity: quantity,
       });
     } else {
-      let userCart = JSON.parse(localStorage.getItem("guestCart"));
+      let userCart = JSON.parse(localStorage.getItem("cart"));
       if (userCart.length === 0) {
         userCart = [
           {
@@ -70,7 +71,7 @@ export default function Product() {
         }
       }
       userCart = JSON.stringify(userCart);
-      localStorage.setItem("guestCart", userCart);
+      localStorage.setItem("userCart", userCart);
     }
   }
   return (
