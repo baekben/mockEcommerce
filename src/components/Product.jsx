@@ -42,7 +42,7 @@ export default function Product() {
       });
     } else {
       let userCart = JSON.parse(localStorage.getItem("guestCart"));
-      if (userCart === "") {
+      if (userCart.length === 0) {
         userCart = [
           {
             title: product.title,
@@ -52,12 +52,22 @@ export default function Product() {
           },
         ];
       } else {
-        userCart.push({
-          title: product.title,
-          productId: productId,
-          quantity: quantity,
-          price: product.price,
-        });
+        const itemExists = userCart.find(
+          (item) => item.title === product.title
+        );
+        console.log(itemExists);
+
+        if (itemExists !== null) {
+          const index = userCart.indexOf(itemExists);
+          userCart[index].quantity++;
+        } else {
+          userCart.push({
+            title: product.title,
+            productId: productId,
+            quantity: quantity,
+            price: product.price,
+          });
+        }
       }
       userCart = JSON.stringify(userCart);
       localStorage.setItem("guestCart", userCart);
