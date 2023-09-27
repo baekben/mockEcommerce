@@ -45,10 +45,20 @@ export default function Cart() {
     setCart(cartProducts);
   }
 
-  async function clearCart() {
+  function clearCart() {
     localStorage.setItem("guestCart", JSON.stringify([]));
     setCart([]);
     setTotalCost(0);
+  }
+
+  function deleteItem(itemTitle) {
+    let itemToDelete = cart.filter((item) => item.title === itemTitle);
+    let newCart = cart.filter((item) => item.title !== itemTitle);
+    setCart(newCart);
+    const newTotal = totalCost - itemToDelete.itemTotal;
+    console.log("newTotal");
+    setTotalCost(newTotal);
+    localStorage.setItem("guestCart", JSON.stringify(newCart));
   }
 
   return (
@@ -92,7 +102,15 @@ export default function Cart() {
                           <td>
                             <h2>${item.itemTotal}</h2>
                           </td>
-                          <td>Delete</td>
+                          <td>
+                            <button
+                              onClick={() => {
+                                deleteItem(item.productInfo.title);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
                         </tr>
                       </>
                     );
