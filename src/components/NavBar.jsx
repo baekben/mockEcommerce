@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function NavBar() {
   const [logout, setLogout] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredItems, setFilteredItems] = useState([]);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const allProducts = JSON.parse(localStorage.getItem("allProducts"));
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,9 +30,23 @@ export default function NavBar() {
     navigate(`/products/searched/${searchTerm}`);
   }
 
+  function toggleMenu() {
+    setMobileMenu(true);
+  }
+
+  function closeMenu() {
+    setMobileMenu(false);
+  }
+
+  function handleClickOutside(e) {
+    if (setMobileMenu && !e.target.classList.contains("hamburgerMenu")) {
+      closeMenu();
+    }
+  }
+
   return (
     <>
-      <div className="navBarContainer">
+      <div className="navBarContainer" onClick={handleClickOutside}>
         <div className="logoContainer">
           <Link to="/">
             <img src={logo} alt="" width={"200px"} height={"200px"} />
@@ -45,7 +59,7 @@ export default function NavBar() {
                 {/* when user logs in, then it can change to sign out or account */}
                 {logout ? (
                   <h3 className="username">
-                    {localStorage.getItem("username")}
+                    Logged In: {localStorage.getItem("username")}
                   </h3>
                 ) : (
                   <Link to="/login">
@@ -70,31 +84,39 @@ export default function NavBar() {
             </div>
           </div>
           <div className="storeNavigation">
+            <div className={`hamburgerMenu`} onClick={toggleMenu}>
+              <div className="bar"></div>
+              <div className="bar"></div>
+              <div className="bar"></div>
+            </div>
             <div className="navigateBtns">
-              <ul className="buttons">
+              <ul className={`buttons ${mobileMenu ? "active" : "unactive"}`}>
                 <li>
-                  <div className="shopCategory mensBtn">
+                  <div className="shopCategory mensBtn" onClick={closeMenu}>
                     <Link to="/products/men's clothing">
                       <h2>Men</h2>
                     </Link>
                   </div>
                 </li>
                 <li>
-                  <div className="shopCategory womensBtn">
+                  <div className="shopCategory womensBtn" onClick={closeMenu}>
                     <Link to="/products/women's clothing">
                       <h2>Women</h2>
                     </Link>
                   </div>
                 </li>
                 <li>
-                  <div className="shopCategory jeweleryBtn">
+                  <div className="shopCategory jeweleryBtn" onClick={closeMenu}>
                     <Link to="/products/jewelery">
                       <h2>Jewlery</h2>
                     </Link>
                   </div>
                 </li>
                 <li>
-                  <div className="shopCategory electronicsBtn">
+                  <div
+                    className="shopCategory electronicsBtn"
+                    onClick={closeMenu}
+                  >
                     <Link to="/products/electronics">
                       <h2>Electronics</h2>
                     </Link>

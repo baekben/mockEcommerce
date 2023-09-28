@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { userLogin } from "../api/login";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../api/user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+
+library.add(fas, faEye);
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -105,7 +111,11 @@ export default function Login() {
                       setVisible(!visible);
                     }}
                   >
-                    {visible ? "Hide Password" : "Show Password"}
+                    {visible ? (
+                      <FontAwesomeIcon icon="fa-regular fa-eye" />
+                    ) : (
+                      <FontAwesomeIcon icon="fa-solid fa-eye" />
+                    )}
                   </button>
                 </div>
               </div>

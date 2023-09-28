@@ -8,14 +8,15 @@ export default function Cart() {
   useEffect(() => {
     async function getUserCart(userId) {
       const loggedIn = localStorage.getItem("loggedIn");
-      if (loggedIn !== "guest") {
+      const userToken = localStorage.getItem("userToken");
+      if (loggedIn !== "guest" && userToken !== "createdUser") {
         const cartItems = await getCart(userId);
         const cartProducts = cartItems.products;
         await itemsInCart(cartProducts);
       } else {
         // if user is not logged in then the cart should be from localstorage
 
-        const cartItems = JSON.parse(localStorage.getItem("cart"));
+        const cartItems = JSON.parse(localStorage.getItem("userCart"));
 
         const cartProducts = cartItems === null ? [] : cartItems;
         await itemsInCart(cartProducts);
@@ -145,7 +146,7 @@ export default function Cart() {
             </div>
           </div>
           <div className="checkoutBtnContainer">
-            <button>checkout</button>
+            <button>Checkout</button>
           </div>
         </div>
       </div>

@@ -116,17 +116,7 @@ export default function Products() {
                       orderItems("price");
                     }}
                   >
-                    <p>
-                      {priceOrder ? (
-                        <>
-                          <p>$$$-$</p>
-                        </>
-                      ) : (
-                        <>
-                          <p>$-$$$</p>
-                        </>
-                      )}
-                    </p>
+                    <p>{priceOrder ? <>$$$-$</> : <>$-$$$</>}</p>
                   </a>
                 </li>
                 <li

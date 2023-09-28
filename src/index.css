@@ -32,7 +32,7 @@ a:hover {
 }
 
 body {
-  font-size: 16px;
+  font-size: 18px;
   background-color: #ffffff;
   color: #a9a9a9;
 }
@@ -43,12 +43,17 @@ h1 {
   margin-bottom: 20px;
 }
 
+button {
+  font-size: 18px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
 button:hover {
-  background-color: #87ceeb;
+  /* background-color: #87ceeb; */
   font-weight: bold;
   cursor: pointer;
-  border: 1px solid black;
-  border-radius: 8px;
 }
 
 footer {
