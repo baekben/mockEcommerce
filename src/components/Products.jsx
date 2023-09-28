@@ -23,7 +23,8 @@ export default function Products() {
           localStorage.getItem("filteredList")
         );
         setProducts(filteredList);
-      } else {
+      }
+      if (category !== undefined) {
         const encodedString = encodeURIComponent(category) + `?sort=${sort}`;
         const getProducts = await specificProducts(encodedString);
         localStorage.setItem("displayProducts", JSON.stringify(getProducts));
@@ -81,7 +82,11 @@ export default function Products() {
       <div className="productsContainer">
         <div className="filterMenu">
           <div className="filterMenuContainer">
-            <h1>{category.toUpperCase()}</h1>
+            <h1>
+              {category !== undefined
+                ? category.toUpperCase()
+                : `Searched: ${searchTerm}`}
+            </h1>
             <div className="filterContainer">
               <h3>Filters</h3>
               <ul className="options">

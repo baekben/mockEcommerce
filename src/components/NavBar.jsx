@@ -29,7 +29,7 @@ export default function NavBar() {
 
     localStorage.setItem("filteredList", JSON.stringify(filteredResults));
     setSearchTerm("");
-    navigate(`/products/searched/${searchTerm}`);
+    navigate(`/searched/${searchTerm}`);
   }
 
   function toggleMenu() {
@@ -51,7 +51,7 @@ export default function NavBar() {
       <div className="navBarContainer" onClick={handleClickOutside}>
         <div className="logoContainer">
           <Link to="/">
-            <img src={logo} alt="" width={"200px"} height={"200px"} />
+            <img src={logo} alt="" width={"150px"} height={"150px"} />
           </Link>
         </div>
         <div className="menuContainer">
