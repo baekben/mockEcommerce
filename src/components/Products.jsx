@@ -7,6 +7,11 @@ export default function Products() {
   const { category, searchTerm } = useParams();
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState("desc");
+  // true is high and false will be low
+  const [priceOrder, setPriceOrder] = useState(true);
+  const [ratingOrder, setRatingOrder] = useState(true);
+
+  const [selected, setSelected] = useState(0);
 
   //const navigate = useNavigate();
   useEffect(() => {
@@ -40,6 +45,32 @@ export default function Products() {
     }
   }
 
+  function orderItems(filter, filterDos = null) {
+    const displayProducts = JSON.parse(localStorage.getItem("displayProducts"));
+    let sortedProducts;
+    if (filterDos === null) {
+      setPriceOrder(!priceOrder);
+      sortedProducts = displayProducts.sort((a, b) =>
+        priceOrder ? a[filter] - b[filter] : b[filter] - a[filter]
+      );
+    } else {
+      setRatingOrder(!ratingOrder);
+      sortedProducts = displayProducts.sort((a, b) =>
+        ratingOrder
+          ? a[filter][filterDos] - b[filter][filterDos]
+          : b[filter][filterDos] - a[filter][filterDos]
+      );
+    }
+
+    localStorage.setItem("displayProducts", JSON.stringify(sortedProducts));
+    setProducts(sortedProducts);
+    console.log("Products", products);
+  }
+
+  function handleSelected(index) {
+    // update to selected choice on filters
+    setSelected(index);
+  }
 
   return (
     <>
@@ -49,22 +80,74 @@ export default function Products() {
             <h2>{category.toUpperCase()}</h2>
             <div className="filterContainer">
               <ul className="options">
-                <li>
+                <li
+                  key={0}
+                  onClick={() => handleSelected(0)}
+                  className={
+                    0 === selected
+                      ? "filterOption nameOrder selected"
+                      : "filterOption nameOrder unselected"
+                  }
+                >
                   <a href="#" onClick={updateSort}>
                     {sort === "desc" ? (
                       <>
-                        <p>↑ A-Z</p>
+                        <p>↑ Z-A</p>
                       </>
                     ) : (
                       <>
-                        <p>↓ Z-A</p>
+                        <p>↓ A-Z</p>
                       </>
                     )}
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <p>Price</p>
+                <li
+                  key={1}
+                  onClick={() => handleSelected(1)}
+                  className={
+                    1 === selected
+                      ? "filterOption priceOrder selected"
+                      : "filterOption priceOrder unselected"
+                  }
+                >
+                  <a
+                    href="#priceSort"
+                    onClick={() => {
+                      orderItems("price");
+                    }}
+                  >
+                    <p>
+                      {priceOrder ? (
+                        <>
+                          <p>$$$-$</p>
+                        </>
+                      ) : (
+                        <>
+                          <p>$-$$$</p>
+                        </>
+                      )}
+                    </p>
+                  </a>
+                </li>
+                <li
+                  key={2}
+                  onClick={() => handleSelected(2)}
+                  className={
+                    2 === selected
+                      ? "filterOption ratingOrder selected"
+                      : "filterOption ratingOrder unselected"
+                  }
+                >
+                  <a
+                    href="#ratingSort"
+                    onClick={() => {
+                      orderItems("rating", "rate");
+                    }}
+                  >
+                    <p>
+                      Rating:{" "}
+                      {ratingOrder ? <>High to Low</> : <>Low to High</>}
+                    </p>
                   </a>
                 </li>
               </ul>

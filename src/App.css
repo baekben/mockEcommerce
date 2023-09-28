@@ -251,6 +251,11 @@ label {
   align-content: center;
 }
 
+.selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 /* .productContainer {
   width: min(50%, 1000px);
 } */
