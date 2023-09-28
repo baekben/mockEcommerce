@@ -35,10 +35,6 @@ function App() {
     localStorage.getItem("loggedIn") === "guest"
       ? guestCart()
       : console.log("user logged in");
-    // if (userLoggedIn) {
-    //   console.log("hello");
-    //   guestCart();
-    // }
   }, []);
 
   return (
@@ -56,7 +52,7 @@ function App() {
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/products/:category" element={<Products />} />
                 <Route
-                  path="/products/:category/:searchTerm"
+                  path="/products/:category/searched/:searchTerm"
                   element={<Products />}
                 />
                 <Route

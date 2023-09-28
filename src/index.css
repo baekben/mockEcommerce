@@ -15,7 +15,7 @@ li {
 }
 
 .navBarContainer {
-  background-color: #808080;
+  background-color: #ff1d58;
   color: #ffffff;
 }
 
@@ -26,15 +26,14 @@ a {
 }
 
 a:hover {
-  color: #87ceeb;
-  text-decoration: underline;
+  color: #0049b7;
   border-radius: 6px;
 }
 
 body {
   font-size: 18px;
   background-color: #ffffff;
-  color: #a9a9a9;
+  color: black;
 }
 
 h1 {
@@ -43,24 +42,35 @@ h1 {
   margin-bottom: 20px;
 }
 
+input {
+  font-size: 24px;
+  border-radius: 6px;
+  border: 1px solid black;
+  margin-top: 12px;
+}
+
 button {
-  font-size: 18px;
+  font-size: 24px;
   background-color: transparent;
-  border: 2px solid black;
+  border: 2px solid #0049b7;
+  background-color: #0049b7;
   border-radius: 8px;
 }
 
 button:hover {
   /* background-color: #87ceeb; */
+  font-size: 24px;
   font-weight: bold;
   cursor: pointer;
 }
 
-footer {
-  background-color: #808080;
-  color: #ffffff;
+.shopCategory > a > h2:hover {
+  background-color: #fff685;
+  border-radius: 6px;
+  height: fit-content;
 }
 
-footer > a {
-  color: #ffffff;
+footer {
+  background-color: #00ddff;
+  color: black;
 }

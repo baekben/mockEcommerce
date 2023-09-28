@@ -17,10 +17,12 @@ export default function Products() {
   useEffect(() => {
     async function getProducts() {
       // sort is added with descending as default
+
       if (searchTerm !== undefined) {
-        const filteredList = JSON.parse(localStorage.getItem("filteredList"));
+        const filteredList = await JSON.parse(
+          localStorage.getItem("filteredList")
+        );
         setProducts(filteredList);
-        console.log(filteredList);
       } else {
         const encodedString = encodeURIComponent(category) + `?sort=${sort}`;
         const getProducts = await specificProducts(encodedString);
@@ -45,8 +47,10 @@ export default function Products() {
     }
   }
 
-  function orderItems(filter, filterDos = null) {
-    const displayProducts = JSON.parse(localStorage.getItem("displayProducts"));
+  async function orderItems(filter, filterDos = null) {
+    const displayProducts = await JSON.parse(
+      localStorage.getItem("displayProducts")
+    );
     let sortedProducts;
     if (filterDos === null) {
       setPriceOrder(!priceOrder);
@@ -77,8 +81,9 @@ export default function Products() {
       <div className="productsContainer">
         <div className="filterMenu">
           <div className="filterMenuContainer">
-            <h2>{category.toUpperCase()}</h2>
+            <h1>{category.toUpperCase()}</h1>
             <div className="filterContainer">
+              <h3>Filters</h3>
               <ul className="options">
                 <li
                   key={0}
@@ -145,7 +150,7 @@ export default function Products() {
           </div>
         </div>
         <div className="productsList">
-          {products.length > 0 ? (
+          {products.length > 0 && products !== null ? (
             products.map((product) => {
               return (
                 <>
@@ -162,7 +167,6 @@ export default function Products() {
                         />
                       </Link>
                     </div>
-
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price.toFixed(2)}</p>

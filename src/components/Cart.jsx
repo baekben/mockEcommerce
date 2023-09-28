@@ -28,7 +28,7 @@ export default function Cart() {
 
   async function itemsInCart(cartProducts) {
     let total = 0;
-    if (cartProducts.length > 0) {
+    if (cartProducts.length > 0 && cartProducts !== undefined) {
       for (let index in cartProducts) {
         const productObj = cartProducts[index];
         console.log(productObj);

@@ -5,21 +5,23 @@ export default function NavBar() {
   const [logout, setLogout] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [mobileMenu, setMobileMenu] = useState(false);
-  const allProducts = JSON.parse(localStorage.getItem("allProducts"));
+
   const navigate = useNavigate();
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
-    loggedIn !== "guest" ? setLogout(true) : setLogout(false);
+    loggedIn ? setLogout(true) : setLogout(false);
   }, []);
 
   async function logoutUser() {
     localStorage.setItem("loggedIn", "guest");
+    localStorage.clear();
+    setLogout(false);
     window.location.reload();
   }
 
   async function handleSearch(e) {
     e.preventDefault();
-
+    const allProducts = JSON.parse(localStorage.getItem("allProducts"));
     const filteredResults = await allProducts.filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -63,7 +65,9 @@ export default function NavBar() {
                   </h3>
                 ) : (
                   <Link to="/login">
-                    <h3>Login</h3>
+                    <h3>
+                      <button>Login</button>
+                    </h3>
                   </Link>
                 )}
               </div>
@@ -78,7 +82,9 @@ export default function NavBar() {
             <div className="cartContainer">
               <div className="cartBtn">
                 <Link to="/cart">
-                  <h3>Cart</h3>
+                  <h3>
+                    <button>Cart</button>
+                  </h3>
                 </Link>
               </div>
             </div>
@@ -91,28 +97,28 @@ export default function NavBar() {
             </div>
             <div className="navigateBtns">
               <ul className={`buttons ${mobileMenu ? "active" : "unactive"}`}>
-                <li>
+                <li key={"mensItems"}>
                   <div className="shopCategory mensBtn" onClick={closeMenu}>
                     <Link to="/products/men's clothing">
                       <h2>Men</h2>
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li key={"womensItems"}>
                   <div className="shopCategory womensBtn" onClick={closeMenu}>
                     <Link to="/products/women's clothing">
                       <h2>Women</h2>
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li key={"jeweleryItems"}>
                   <div className="shopCategory jeweleryBtn" onClick={closeMenu}>
                     <Link to="/products/jewelery">
                       <h2>Jewlery</h2>
                     </Link>
                   </div>
                 </li>
-                <li>
+                <li key={"electronicsItems"}>
                   <div
                     className="shopCategory electronicsBtn"
                     onClick={closeMenu}

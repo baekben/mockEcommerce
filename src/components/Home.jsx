@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { getAllProducts } from "../api/products";
 
 export default function Home() {
   const [imgs, setImgs] = useState([]);
   useEffect(() => {
     async function getPreviewImgs() {
       try {
+        const allProducts = await getAllProducts();
+        localStorage.setItem("allProducts", JSON.stringify(allProducts));
         const response = await JSON.parse(localStorage.getItem("allProducts"));
         setImgs(response);
       } catch (error) {
@@ -39,14 +42,6 @@ export default function Home() {
             <h2>Bring the styles back</h2>
           </div>
         </div>
-        {/* <div className="imgBoxes">
-          <div className="imgBox"></div>
-          <div className="imgBox"></div>
-        </div>
-        <div className="imgBoxes">
-          <div className="imgBox"></div>
-          <div className="imgBox"></div>
-        </div> */}
       </div>
     </>
   );

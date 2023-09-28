@@ -203,7 +203,7 @@ label {
 .previewProductImg,
 .productImg {
   padding: 30px;
-  height: 200px;
+  height: 300px;
   width: auto;
 }
 
@@ -249,9 +249,34 @@ width: min(50%, 1000px);
   width: 100%;
 }
 
-/* .filterMenu {
-border: 2px solid black;
-} */
+.quantityInput {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.quantityInput > button,
+.quantityInput > input {
+  padding: 5px;
+}
+
+.quantityInput > button {
+  border: transparent;
+  width: 4rem;
+}
+
+.quantityInput > input {
+  font-size: 24px;
+  border: 2px solid black;
+  width: max(20px);
+  flex: 1;
+}
+
+.filterContainer {
+  border-radius: 6px;
+  background-color: #f75990;
+}
 
 .filterContainer > ul {
   list-style: none;
@@ -261,6 +286,13 @@ border: 2px solid black;
 
 .filterContainer > ul > li > a {
   text-decoration: none;
+}
+
+.filterContainer > ul > li > a > p:hover {
+  background-color: #fff685;
+  padding: 3px 6px;
+  border-radius: 6px;
+  height: min-content;
 }
 
 .productInfoContainer {
@@ -277,6 +309,9 @@ border: 2px solid black;
 
 .productCostInfo {
   margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .priceContainer {
@@ -349,14 +384,16 @@ th {
   .buttons {
     display: none;
     flex-direction: column;
-    background-color: #333;
+    background-color: #f75990;
     position: absolute;
     list-style-type: none;
     top: 60px;
     left: 0;
     right: 0;
     padding: 10px;
+    border-radius: 10px;
   }
+
   .buttons.active {
     display: flex;
   }
@@ -365,6 +402,11 @@ th {
     flex-direction: column;
     justify-content: center;
   }
+}
+.previewProductImg:hover,
+.productImg:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease; /* Add a smooth transition effect */
 }
 
 /* Tablet: 768 x 1024 */
