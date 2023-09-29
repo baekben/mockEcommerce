@@ -8,12 +8,12 @@ export default function NavBar() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    const loggedIn = localStorage.getItem("loggedIn");
+    const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
     loggedIn ? setLogout(true) : setLogout(false);
   }, []);
 
   async function logoutUser() {
-    localStorage.setItem("loggedIn", "guest");
+    localStorage.setItem("loggedIn", false);
     localStorage.clear();
     setLogout(false);
     window.location.reload();

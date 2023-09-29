@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { getCart } from "../api/cart";
 import { getProduct } from "../api/products";
+import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const navigate = useNavigate();
   // placeholding cart
   useEffect(() => {
     async function getUserCart(userId) {
       const loggedIn = localStorage.getItem("loggedIn");
       const userToken = localStorage.getItem("userToken");
-      if (loggedIn !== "guest" && userToken !== "createdUser") {
+      if (loggedIn === true && userToken !== "createdUser") {
         const cartItems = await getCart(userId);
         const cartProducts = cartItems.products;
         await itemsInCart(cartProducts);
       } else {
         // if user is not logged in then the cart should be from localstorage
 
-        const cartItems = JSON.parse(localStorage.getItem("userCart"));
+        const cartItems = JSON.parse(localStorage.getItem("cart"));
 
         const cartProducts = cartItems === null ? [] : cartItems;
         await itemsInCart(cartProducts);
@@ -62,6 +64,16 @@ export default function Cart() {
     localStorage.setItem("cart", JSON.stringify(newCart));
   }
 
+  function changeQuantity(index, amount) {
+    const updatedItems = [...cart];
+    const updatedItem = { ...updatedItems[index] };
+    updatedItem.quantity = updatedItem.quantity + amount;
+    updatedItem.itemTotal = updatedItem.quantity * updatedItem.price;
+    updatedItems[index] = updatedItem;
+    setCart(updatedItems);
+    localStorage.setItem("cart", JSON.stringify(updatedItems));
+  }
+
   return (
     <>
       <div className="cartContainer">
@@ -90,7 +102,7 @@ export default function Cart() {
               </thead>
               <tbody>
                 {cart.length > 0 ? (
-                  cart.map((item) => {
+                  cart.map((item, index) => {
                     return (
                       <>
                         <tr key={item.id + " cart item"}>
@@ -98,7 +110,29 @@ export default function Cart() {
                             <h2>{item.productInfo.title}</h2>
                           </td>
                           <td>
-                            <h2>{item.quantity}</h2>
+                            <h2>
+                              <button
+                                onClick={() => {
+                                  changeQuantity(index, -1);
+                                }}
+                              >
+                                -
+                              </button>
+                              <input
+                                type="text"
+                                value={item.quantity}
+                                onChange={(e) => {
+                                  changeQuantity(index, e.target.value);
+                                }}
+                              />
+                              <button
+                                onClick={() => {
+                                  changeQuantity(index, 1);
+                                }}
+                              >
+                                +
+                              </button>
+                            </h2>
                           </td>
                           <td>
                             <h2>${item.itemTotal}</h2>
@@ -146,7 +180,13 @@ export default function Cart() {
             </div>
           </div>
           <div className="checkoutBtnContainer">
-            <button>Checkout</button>
+            <button
+              onClick={() => {
+                navigate("/cart/checkout");
+              }}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>

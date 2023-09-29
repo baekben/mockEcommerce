@@ -17,24 +17,25 @@ import {
   faXTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import Checkout from "./components/Checkout";
 
 function App() {
   library.add(fas, faFacebook, faXTwitter, faInstagram);
 
   useEffect(() => {
     async function guestCart() {
-      localStorage.setItem("loggedIn", "guest");
+      localStorage.setItem("loggedIn", false);
       const allProducts = await getAllProducts();
       localStorage.setItem("allProducts", JSON.stringify(allProducts));
       // guest cart will be local storage
-      if (localStorage.getItem("userCart") === null) {
-        localStorage.setItem("userCart", JSON.stringify([]));
+      if (localStorage.getItem("cart") === null) {
+        localStorage.setItem("cart", JSON.stringify([]));
       }
     }
 
-    localStorage.getItem("loggedIn") === "guest"
-      ? guestCart()
-      : console.log("user logged in");
+    localStorage.getItem("loggedIn") === true
+      ? console.log("user logged in")
+      : guestCart();
   }, []);
 
   return (
@@ -58,6 +59,7 @@ function App() {
                 />
 
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/cart/checkout" element={<Checkout />} />
               </Routes>
             </div>
           </main>

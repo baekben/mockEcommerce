@@ -32,18 +32,20 @@ export default function Product() {
 
   async function addToCart(e) {
     e.preventDefault();
-
-    if (localStorage.getItem("loggedIn") !== "guest") {
+    let userCart = JSON.parse(localStorage.getItem("cart"));
+    if (localStorage.getItem("loggedIn") === true) {
       console.log(
         `Adding ${quantity} ${product.title} with id ${productId} to cart...`
       );
-      await addNewItems(userId, date, {
+      const itemToAdd = await addNewItems(userId, date, {
         productId: productId,
         quantity: quantity,
       });
+
+      userCart.push(itemToAdd);
+      localStorage.setItem("cart", JSON.parse(userCart));
     } else {
-      let userCart = JSON.parse(localStorage.getItem("cart"));
-      if (userCart.length === 0) {
+      if (userCart === null) {
         userCart = [
           {
             title: product.title,
@@ -71,9 +73,11 @@ export default function Product() {
         }
       }
       userCart = JSON.stringify(userCart);
-      localStorage.setItem("userCart", userCart);
+      localStorage.setItem("cart", userCart);
     }
   }
+
+
   return (
     <>
       {product && (
@@ -116,7 +120,7 @@ export default function Product() {
                   +
                 </button>
               </div>
-              <div className="buttons">
+              <div className="productButtons">
                 <div className="buttonsContainer">
                   <button onClick={handleClick}>
                     Go Back to {`${category}`} products
