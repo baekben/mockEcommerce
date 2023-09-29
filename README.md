@@ -1,5 +1,7 @@
 # Capstone Project
 
+Link to webpage: https://thatstore-mocksite.netlify.app/
+
 In this project, I was tasked to create an e-commerce site lik Amazon, Monoprice, or eBay. Under certain requirements, I coded my project using the [Fake Store API](https://fakestoreapi.com/)
 
 The Tier 1 requirements for this project were:
